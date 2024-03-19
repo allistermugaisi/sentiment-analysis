@@ -20,7 +20,7 @@ def webScraping():
     # Connect to your MongoDB server
     client = pymongo.MongoClient("mongodb://localhost:27017/")
     database = client["sentiment-analysis"]
-    collection = database["web-scrapped-data"]
+    collection = database["web-scraped-data-now"]
     # Retrieve data from MongoDB
     cursor = collection.find({})
     # Convert cursor to list of dictionaries
@@ -38,7 +38,7 @@ def sentimentAnalysis():
     # Connect to your MongoDB server
     client = pymongo.MongoClient("mongodb://localhost:27017/")
     database = client["sentiment-analysis"]
-    collection = database["analyzed-sentiments"]
+    collection = database["analyzed-sentiments-now"]
     # Retrieve data from MongoDB
     cursor = collection.find({})
     # Convert cursor to list of dictionaries

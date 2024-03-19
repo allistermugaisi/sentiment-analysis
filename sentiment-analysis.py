@@ -47,7 +47,7 @@ def sentiment_score(sentence):
 
 
 # Read the data from the CSV file
-data = pd.read_csv("nairobi_hospital.csv")
+data = pd.read_csv("kcb_bank_now.csv")
 data.columns = ["Title", "Link", "Description", "Time"]
 
 # Apply the sentiment_score function to the Title column
@@ -57,10 +57,10 @@ data["Sentiment"] = data["Sentiment-Score"].apply(
 )
 data["Type"] = "news"
 data["Source"] = "Google News"
-data["Category"] = "Nairobi Hospital"
+data["Category"] = "KCB Bank"
 
 # Write the data to a CSV file
-document = open("nairobi_hospital_sentiments.csv", "a")
+document = open("kcb_bank_now_sentiments.csv", "a")
 for i in range(len(data)):
     title = data.iloc[i, 0]
     link = data.iloc[i, 1]
@@ -92,7 +92,7 @@ for i in range(len(data)):
     # Connect to your MongoDB server
     client = pymongo.MongoClient("mongodb://localhost:27017/")
     database = client["sentiment-analysis"]
-    collection = database["analyzed-sentiments"]
+    collection = database["analyzed-sentiments-now"]
 
     # Insert data into MongoDB collection
     collection.insert_many(payload)

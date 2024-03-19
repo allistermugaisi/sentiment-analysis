@@ -8,7 +8,7 @@ import re
 import string
 from bs4 import BeautifulSoup
 
-data = pd.read_csv("java_house_sentiments.csv")
+data = pd.read_csv("kcb_bank_now_sentiments.csv")
 data.columns = [
     "Title",
     "Link",
@@ -42,18 +42,18 @@ usernames = re.compile("@[A-Za-z0-9]+")
 # print(usernames)
 
 
-def text_cleaning(text):
-    text = usernames.sub(" ", text)  # removing usernames
-    text = BeautifulSoup(text, "lxml").text  # removing any html decoding
-    text = text.lower()  # removing capitalization
-    text = space_replace.sub(" ", text)  # replacing symbols with a space
-    text = bad_symbols.sub("", text)  # deleting symbols from the text
-    text = " ".join(
-        word for word in text.split() if word not in stopwords
-    )  # removing stopwords
-    text = urls.sub("", text)  # removing urls
-    text = "".join([char for char in text if char not in string.punctuation])
-    return text
+# def text_cleaning(text):
+#     text = usernames.sub(" ", text)  # removing usernames
+#     text = BeautifulSoup(text, "lxml").text  # removing any html decoding
+#     text = text.lower()  # removing capitalization
+#     text = space_replace.sub(" ", text)  # replacing symbols with a space
+#     text = bad_symbols.sub("", text)  # deleting symbols from the text
+#     text = " ".join(
+#         word for word in text.split() if word not in stopwords
+#     )  # removing stopwords
+#     text = urls.sub("", text)  # removing urls
+#     text = "".join([char for char in text if char not in string.punctuation])
+#     return text
 
 
 # data["cleaned_text"] = data["Title"].head().apply(text_cleaning)

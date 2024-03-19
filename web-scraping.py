@@ -17,7 +17,7 @@ import pymongo
 
 # Append the URL to the root &hl=en English Language as result
 root = "https://www.google.com/"
-link = "https://www.google.com/search?q=kenya+airways&hl=en&tbm=nws&source=lnt&tbs=sbd:1&sa=X&ved=0ahUKEwjAvsKDyOXtAhXBhOAKHXWdDgcQpwUIKQ&biw=1604&bih=760&dpr=1.2&sxsrf=ACQVn0-PMyGgHhLF2D_EsXCjV6QDhRB9Ag:1710581442145"
+link = "https://www.google.com/search?q=kcb+bank&hl=en&tbm=nws&source=lnt&tbs=sbd:1&sa=X&ved=0ahUKEwjAvsKDyOXtAhXBhOAKHXWdDgcQpwUIKQ&biw=1604&bih=760&dpr=1.2&sxsrf=ACQVn0-PMyGgHhLF2D_EsXCjV6QDhRB9Ag:1710581442145"
 
 
 def news(link):
@@ -61,13 +61,13 @@ def news(link):
         # Connect to your MongoDB server
         client = pymongo.MongoClient("mongodb://localhost:27017/")
         database = client["sentiment-analysis"]
-        collection = database["web-scrapped-data"]
+        collection = database["web-scraped-data-now"]
 
         data = [
             {
                 "type": "news",
                 "source": "Google News",
-                "category": "Kenya Airways",
+                "category": "KCB Bank",
                 "title": title,
                 "link": link,
                 "description": description,
@@ -79,11 +79,11 @@ def news(link):
         collection.insert_many(data)
 
         # Write the data to a CSV file
-        document = open("kenya_airways.csv", "a")
+        document = open("kcb_bank_now.csv", "a")
         document.write(f"{title},{link},{description},{time}\n")
         document.close()
         print(
-            "Google news web scrapped data has been written to kenya_airways.csv successfully!"
+            "Google news web scrapped data has been written to kcb_bank.csv successfully!"
         )
 
         next = soup.find("a", attrs={"aria-label": "Next page"})
